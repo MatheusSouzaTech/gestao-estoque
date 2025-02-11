@@ -3,9 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Gestão de Estoque</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
+
+
+    <h1>Gestão de Estoque</h1>
+    
+    <div class="container">
+
+        <form method="post">
+
+            <label for="codigo">Codigo do Produto</label>
+            <input type="number" id="codigo" name="name" required>
+
+
+            <label for="nomeProduto">Nome do Produto</label>
+            <input type="text" id="nomeProduto" name="nomeProduto" placeholder="Produto" required>
+
+
+            <label for="descricao">Descrição</label>
+            <input type="text" id="descricao" name="descricao" placeholder="Descrição" required>
+
+           
+            <label for="categoria">Categoria</label>
+            <select name="categoria" id="categoria">
+
+                <option value="higienicos">Higienicos</option>
+                <option value="alimenticios">Alimenticios</option>
+                <option value="eletronicos">Eletronicos</option>
+
+            </select>
+
+
+            <label for="quant">Quatidade de estoque: </label>
+            <input type="number" id="quant" name="quant" placeholder="Quantidade" required>
+
+
+            <label for="preco">Preço</label>
+            <input type="number" id="preco" name="preco" placeholder="Preço" required>
+
+
+            <label for="entrada">Data de Entrada</label>
+            <input type="date" id="entrada" name="entrada" placeholder="dd/mm/aaaa" required>
+
+            <label for="validade">Data de Validade</label>
+            <input type="date" id="validade" name="validade" required>
+
+            <label for="local">Localização no armazém</label>
+            <input type="text" id="local" name="local" placeholder="Localização" required>
+
+            <label for="status">Status</label>
+            <select name="status" id="status" required>
+
+                <option value="ativo">Ativo</option>
+                <option value="inativo">Inativo</option>
+
+            </select>
+
+            <label for="obs">Observações</label>
+            <input type="text" id="obs" name="obs" placeholder="Observações">
+
+        </form>
+
+
+
+    </div>
+    
     
 </body>
 </html>

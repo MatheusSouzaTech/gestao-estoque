@@ -3,9 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cadastro de usuarios</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
     
+    <div class="container">
+
+        <form method="post">
+
+            <h1>Cadastro</h1>
+
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" placeholder="Nome" required>
+
+            <label for="senha">Senha</label>
+            <input type="text" id="senha" name="senha" placeholder="Senha" required>
+
+            <label for="perfil">Tipo de Perfil</label>
+
+            <select name="perfil" id="perfil">
+                <option value="adm">Administrador</option>
+                <option value="func">Funcionario</option>
+
+            </select>
+
+            <button type="submit" name="cadastro">Cadastrar</button>
+
+        </form>
+
+
+    </div>
+
+
 </body>
 </html>
