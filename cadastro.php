@@ -57,7 +57,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro'])){
             <?php endif; ?>
 
         <?php if(isset($cadastro_sucesso)): ?>
-            <p class="sucesso"><?php echo $sucesso_cadastro; ?></p>
+            <p class="sucesso"><?php echo $cadastro_sucesso; ?></p>
             <?php endif; ?>
 
             <label for="nome">Nome</label>
@@ -69,7 +69,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro'])){
             
 
             <label for="senha">Senha</label>
-            <input type="text" id="senha" name="senha" placeholder="Senha" required>
+            <input type="password" id="senha" name="senha" placeholder="Senha" required>
 
             <label for="perfil">Tipo de Perfil</label>
 
@@ -80,6 +80,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro'])){
             </select>
 
             <button type="submit" name="cadastro">Cadastrar</button>
+            <a href="index.php">Login</a>
 
         </form>
 
