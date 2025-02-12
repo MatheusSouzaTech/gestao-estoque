@@ -1,3 +1,41 @@
+<?php
+
+require 'conexão.php';
+require 'functions.php';
+
+
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro'])){
+
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+    $perfil = $_POST['perfil'];
+
+    if(cadastrarUsuario($nome, $email, $senha, $perfil,$conn)){
+
+        $cadastro_sucesso = 'Cadastro realizado com sucesso! Faça o login.';
+
+    }
+    else{
+
+        $erro_cadastro = 'Erro ao cadastrar. Email já existe';
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +52,21 @@
 
             <h1>Cadastro</h1>
 
+           <?php if($erro_cadastro): ?>
+        <p class="erro"><?php echo $erro_cadastro; ?></p>
+            <?php endif; ?>
+
+        <?php if(isset($cadastro_sucesso)): ?>
+            <p class="sucesso"><?php echo $sucesso_cadastro; ?></p>
+            <?php endif; ?>
+
             <label for="nome">Nome</label>
             <input type="text" id="nome" name="nome" placeholder="Nome" required>
+
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="email" required>
+            
 
             <label for="senha">Senha</label>
             <input type="text" id="senha" name="senha" placeholder="Senha" required>

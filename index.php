@@ -1,3 +1,33 @@
+<?php
+
+ require 'conexão.php';
+ require 'functions.php';
+
+$login_erro = '';
+
+if($_SERVER['REQUEST_METHOD'] === 'post' && isset(($_POST['logar']))){
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+
+    if(fazerLogin($email, $senha, $conn)){
+
+        header('Location: conteudo.php');
+
+    }
+    else{
+        $login_erro = 'Email ou senha incorretos';
+    }
+
+}
+
+
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,19 +42,23 @@
 
         <h1>Login</h1>
 
+        <?php if($login_erro): ?>
+        <p class="erro"><?php echo $login_erro; ?></p>
+        <?php endif; ?>
 
         <form method="post">
 
             <label for="email">Login</label>
-            <input type="text" name="email" id="email" placeholder="email" required>
+            <input type="text" name="email" id="email" placeholder="email">
 
             <label for="senha">Senha</label>
-            <input type="text" name="senha" id="senha" placeholder="senha" required>
+            <input type="password" name="senha" id="senha" placeholder="senha">
 
             <button type="submit" name="logar">Entrar</button>
-            <button type="submit" name="cadastrar">Cadastrar</button>
+            <a href="cadastro.php">Cadastrar</a>
 
         </form>
+
 
 
 

@@ -65,6 +65,9 @@
             <label for="obs">Observações</label>
             <input type="text" id="obs" name="obs" placeholder="Observações">
 
+
+            <button type="submit" name="incluir">Cadastrar</button>
+
         </form>
 
 
