@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logar'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logar'])) {
 
         <h1>Login</h1>
 
-        <?php if (!empty($login_erro)): ?>
+        <?php if($login_erro): ?>
             <p class="erro"><?php echo $login_erro; ?></p>
         <?php endif; ?>
 

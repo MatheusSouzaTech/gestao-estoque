@@ -3,6 +3,9 @@
 require 'conexão.php';
 require 'functions.php';
 
+$erro_cadastro = '';
+$cadastro_sucesso = '';
+
 
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro'])){
 
@@ -23,15 +26,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro'])){
 
 
 }
-
-
-
-
-
-
-
-
-
 ?>
 
 
@@ -53,7 +47,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro'])){
             <h1>Cadastro</h1>
 
            <?php if($erro_cadastro): ?>
-        <p class="erro"><?php echo $erro_cadastro; ?></p>
+            <p class="erro"><?php echo $erro_cadastro; ?></p>
             <?php endif; ?>
 
         <?php if(isset($cadastro_sucesso)): ?>
