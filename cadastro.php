@@ -1,6 +1,6 @@
 <?php
 
-require 'conexão.php';
+require 'conexao.php';
 require 'functions.php';
 
 $erro_cadastro = '';
@@ -17,6 +17,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro'])){
     if(cadastrarUsuario($nome, $email, $senha, $perfil,$conn)){
 
         $cadastro_sucesso = 'Cadastro realizado com sucesso! Faça o login.';
+        
 
     }
     else{
@@ -68,7 +69,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro'])){
             <label for="perfil">Tipo de Perfil</label>
 
             <select name="perfil" id="perfil">
-                <option value="adm">Administrador</option>
+                <option value="admin">Administrador</option>
                 <option value="func">Funcionario</option>
 
             </select>

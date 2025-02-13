@@ -1,28 +1,34 @@
 <?php
 
 
-require 'conexão.php';
+require 'conexao.php';
 require 'functions.php';
 
 
 
 $login_erro = '';
 
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logar'])) {
 
     $email = $_POST['email'];
     $senha = $_POST['senha'];
+    $perfil = $_SESSION['usuario_perfil'];
 
     if (fazerLogin($email, $senha, $conn)) {
-        if ($perfil === 'adm') { 
+        if ($perfil === 'func') { 
             header('Location: produtos.php');
             exit();
-        } else {
-            header('Location: conteudo.php'); // Redireciona funcionário
+        } else if($perfil === 'admin'){
+            header('Location: conteudo.html'); // Redireciona funcionário
             exit();
+            
         }
     } else {
+
         $login_erro = 'Email ou senha incorretos';
+       
     }
     
 }
