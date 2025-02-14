@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logar'])) {
             header('Location: produtos.php');
             exit();
         } else if($perfil === 'admin'){
-            header('Location: conteudo.html'); // Redireciona funcionário
+            header('Location: conteudo.php'); // Redireciona funcionário
             exit();
             
         }

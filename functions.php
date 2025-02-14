@@ -40,7 +40,7 @@ function cadastrarProduto($usuario_id,$codigoProduto,$nomeProduto,$descricaoProd
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 
-    $stmt->bind_param("iisssidsdsss", $usuario_id,$codigoProduto,$nomeProduto, $descricaoProduto, $categoria, $quant, $preco,$dataEntrada,$dataValidade,$localizacao,$status,$obs);
+    $stmt->bind_param("iisssidsssss", $usuario_id,$codigoProduto,$nomeProduto, $descricaoProduto, $categoria, $quant, $preco,$dataEntrada,$dataValidade,$localizacao,$status,$obs);
 
     return $stmt->execute();
 
@@ -67,11 +67,12 @@ function editarProduto(){
 
 }
 
-function excluirProduto(){
-
+function removerProduto($id,$conn){
+    $stmt = $conn->prepare("DELETE FROM produtos WHERE id = ?");
+    $stmt->bind_param("i",$id);
+    return $stmt->execute();
 
 }
-
 
 
 

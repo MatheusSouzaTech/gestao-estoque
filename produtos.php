@@ -13,7 +13,7 @@ if(!isset($_SESSION['usuario_id'])){
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['incluir'])){
 
     $usuario_id = $_SESSION['usuario_id'];
-    $codigoProduto = $_POST['codigo'];
+    $id = $_POST['codigo'];
     $nomeProduto = $_POST['nomeProduto'];
     $descricaoProduto = $_POST['descricao'];
     $categoria = $_POST['categoria'];
@@ -28,7 +28,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['incluir'])){
 
 
 
-    if(cadastrarProduto($usuario_id,$codigoProduto,$nomeProduto,$descricaoProduto,$categoria,$quant,$preco,$dataEntrada,$dataValidade,$localizacao,$status,$obs,$conn)){
+    if(cadastrarProduto($id,$usuario_id,$nomeProduto,$descricaoProduto,$categoria,$quant,$preco,$dataEntrada,$dataValidade,$localizacao,$status,$obs,$conn)){
 
         $sucesso_produto = 'Produto cadastrado com sucesso!';
     }
@@ -40,11 +40,28 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['incluir'])){
 
 }
 
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pesquisar'])){
+$produtos = vizualizarProduto($_SESSION['usuario_id'],$conn);
 
-    vizualizarProduto($usuario_id,$conn);
+
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])){
+
+    
 
 }
+
+if(isset($_GET['remover'])){
+    $id = $_GET['remover'];
+    if(removerProduto($id,$conn)){
+        $sucesso_produto = 'Produto removido com sucesso!';
+        header('Location:produtos.php');
+        exit();
+
+    }else{
+        $erro_produto = 'Erro ao remover produto';
+    }
+}
+
+
 
 
 
@@ -84,16 +101,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pesquisar'])){
         <p class="erro"><?php echo $erro_produto; ?></p>
     <?php endif; ?>
 
-    <div class="container">
+    <section class="container">
 
 
         <form method="post">
 
             <label for="codigo">Codigo do Produto</label>
             <input type="number" id="codigo" name=" codigo" >
-
-            <button type="submit" name="pesquisar">Pesquisar</button>
-
 
             <label for="nomeProduto">Nome do Produto</label>
             <input type="text" id="nomeProduto" name="nomeProduto" placeholder="Produto" >
@@ -143,15 +157,67 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pesquisar'])){
 
 
             <button type="submit" name="incluir">Cadastrar</button>
-            <button type="submit" name="editar">Editar</button>
-            <button type="submit" name="excluirProduto">Excluir</button>
+            
 
         </form>
 
 
 
 
-    </div>
+    </section>
+
+    <section class="container-tabela">
+    <table>
+        
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Codigo do Produto:</th>
+                <th>Nome do Produto:</th>
+                <th>Descrição</th>
+                <th>Categoria</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+                <th>Data de Entrada</th>
+                <th>Data de Validade</th>
+                <th>Localização no armazém</th>
+                <th>Status</th>
+                <th>Observações</th>
+            </tr>
+   
+        </thead>
+
+        <tbody>
+            <?php foreach($produtos as $produto): ?>
+            <tr>
+                <td><?php echo $produto['id'];?></td>
+                <td><?php echo $produto['codigoProduto'];?></td>
+                <td><?php echo $produto['nomeProduto'];?></td>
+                <td><?php echo $produto['descricaoProduto'];?></td>
+                <td><?php echo $produto['categoria'];?></td>
+                <td><?php echo $produto['quant'];?></td>
+                <td><?php echo $produto['preco'];?></td>
+                <td><?php echo $produto['dataEntrada'];?></td>
+                <td><?php echo $produto['dataValidade'];?></td>
+                <td><?php echo $produto['localizacao'];?></td>
+                <td><?php echo $produto['stat'];?></td>
+                <td><?php echo $produto['obs'];?></td>
+
+                <td>
+                    <a href="?remover=<?php echo $produto['id']; ?>"onclick="return confirm('Tem certeza?')">Remover</a>
+                </td>
+
+
+            </tr>
+            <?php endforeach; ?>
+
+
+        </tbody>
+
+    </table>
+
+    </section>
     
     
 </body>
