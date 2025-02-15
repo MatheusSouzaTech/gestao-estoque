@@ -28,7 +28,7 @@ function fazerLogin($email, $senha, $conn) {
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['usuario_nome'] = $usuario['nome'];
         $_SESSION['usuario_perfil'] = $usuario['perfil'];
-        return true; 
+        return $_SESSION['usuario_perfil']; 
     }
 
     return false; 
@@ -62,10 +62,18 @@ function vizualizarProduto($usuario_id,$conn){
 
 }
 
-function editarProduto(){
+function editarProduto($id, $codigoProduto, $nomeProduto, $descricaoProduto, $categoria, $quant, $preco, $dataEntrada, $dataValidade, $localizacao, $status, $obs, $conn) {
+
+    
+    $stmt = $conn->prepare("UPDATE produtos SET codigoProduto=?, nomeProduto=?, descricaoProduto=?, categoria=?, quant=?, preco=?, dataEntrada=?, dataValidade=?, localizacao=?, stat=?, obs=? WHERE id=?");
 
 
+    $stmt->bind_param("sssisisssssi", $codigoProduto, $nomeProduto, $descricaoProduto, $categoria, $quant, $preco, $dataEntrada, $dataValidade, $localizacao, $status, $obs, $id);
+
+   
+    return $stmt->execute();
 }
+
 
 function removerProduto($id,$conn){
     $stmt = $conn->prepare("DELETE FROM produtos WHERE id = ?");

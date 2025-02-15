@@ -10,6 +10,7 @@ if(!isset($_SESSION['usuario_id'])){
     exit();
 }
 
+
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['incluir'])){
 
     $usuario_id = $_SESSION['usuario_id'];
@@ -43,11 +44,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['incluir'])){
 $produtos = vizualizarProduto($_SESSION['usuario_id'],$conn);
 
 
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])){
 
-    
 
-}
 
 if(isset($_GET['remover'])){
     $id = $_GET['remover'];
@@ -62,30 +60,17 @@ if(isset($_GET['remover'])){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Gestão de Estoque</title>
-    <link rel="stylesheet" href="main.css">
 </head>
 <body>
 
@@ -101,13 +86,16 @@ if(isset($_GET['remover'])){
         <p class="erro"><?php echo $erro_produto; ?></p>
     <?php endif; ?>
 
+    
+
+
     <section class="container">
 
 
         <form method="post">
 
             <label for="codigo">Codigo do Produto</label>
-            <input type="number" id="codigo" name=" codigo" >
+            <input type="number" id="codigo" name="codigo" >
 
             <label for="nomeProduto">Nome do Produto</label>
             <input type="text" id="nomeProduto" name="nomeProduto" placeholder="Produto" >
@@ -158,6 +146,7 @@ if(isset($_GET['remover'])){
 
             <button type="submit" name="incluir">Cadastrar</button>
             
+            
 
         </form>
 
@@ -206,6 +195,7 @@ if(isset($_GET['remover'])){
 
                 <td>
                     <a href="?remover=<?php echo $produto['id']; ?>"onclick="return confirm('Tem certeza?')">Remover</a>
+                    <a href="editarProduto.php?id=<?php echo $produto['id'];?>">Editar</a>
                 </td>
 
 
