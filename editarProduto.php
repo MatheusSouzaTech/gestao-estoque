@@ -82,51 +82,72 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_produto'])) {
 
     <section class="container">
         <form method="post">
+
+            <div class="mb-3" id="formulario">
+
             <label for="codigo">Código do Produto</label>
-            <input type="number" id="codigo" name="codigo" value="<?php echo $produtos['codigoProduto']; ?>" required>
+            <input type="number" id="codigo" name="codigo" value="<?php echo $produtos['codigoProduto']; ?>"class="form-control" required>
+
 
             <label for="nomeProduto">Nome do Produto</label>
-            <input type="text" id="nomeProduto" name="nomeProduto" placeholder="Produto" value="<?php echo $produtos['nomeProduto']; ?>" required>
+            <input type="text" id="nomeProduto" name="nomeProduto" placeholder="Produto" value="<?php echo $produtos['nomeProduto']; ?>" class="form-control" required>
+
 
             <label for="descricao">Descrição</label>
-            <input type="text" id="descricao" name="descricao" placeholder="Descrição" value="<?php echo $produtos['descricaoProduto']; ?>">
+            <input type="text" id="descricao" name="descricao" placeholder="Descrição" value="<?php echo $produtos['descricaoProduto']; ?>" class="form-control">
+
 
             <label for="categoria">Categoria</label>
-            <select name="categoria" id="categoria">
+            <select name="categoria" id="categoria" class="form-select form-select-sm">
+
                 <option value="higienicos" <?php echo ($produtos['categoria'] == 'higienicos') ? 'selected' : ''; ?>>Higienicos</option>
                 <option value="alimenticios" <?php echo ($produtos['categoria'] == 'alimenticios') ? 'selected' : ''; ?>>Alimentícios</option>
                 <option value="eletronicos" <?php echo ($produtos['categoria'] == 'eletronicos') ? 'selected' : ''; ?>>Eletrônicos</option>
+
             </select>
+
 
             <label for="quant">Quantidade em Estoque</label>
-            <input type="number" id="quant" name="quant" placeholder="Quantidade" min="0" value="<?php echo $produtos['quant']; ?>" required>
+            <input type="number" id="quant" name="quant" placeholder="Quantidade" min="0" value="<?php echo $produtos['quant']; ?>" class="form-control" required>
+
 
             <label for="preco">Preço</label>
-            <input type="number" id="preco" name="preco" placeholder="Preço" value="<?php echo $produtos['preco']; ?>">
+            <input type="number" id="preco" name="preco" placeholder="Preço" value="<?php echo $produtos['preco']; ?>"class="form-control">
+
 
             <label for="entrada">Data de Entrada</label>
-            <input type="date" id="entrada" name="entrada" value="<?php echo $produtos['dataEntrada']; ?>">
+            <input type="date" id="entrada" name="entrada" value="<?php echo $produtos['dataEntrada']; ?>" class="form-control">
+
 
             <label for="validade">Data de Validade</label>
-            <input type="date" id="validade" name="validade" value="<?php echo $produtos['dataValidade']; ?>">
+            <input type="date" id="validade" name="validade" value="<?php echo $produtos['dataValidade']; ?>" class="form-control">
+
 
             <label for="local">Localização no Armazém</label>
-            <input type="text" id="local" name="local" placeholder="Localização" value="<?php echo $produtos['localizacao']; ?>">
+            <input type="text" id="local" name="local" placeholder="Localização" value="<?php echo $produtos['localizacao']; ?>" class="form-control">
+
 
             <label for="status">Status</label>
-            <select name="status" id="status">
+            <select name="status" id="status" class="form-select form-select-sm">
+
                 <option value="ativo" <?php echo ($produtos['stat'] == 'ativo') ? 'selected' : ''; ?>>Ativo</option>
                 <option value="inativo" <?php echo ($produtos['stat'] == 'inativo') ? 'selected' : ''; ?>>Inativo</option>
+
             </select>
 
+
             <label for="obs">Observações</label>
-            <input type="text" id="obs" name="obs" placeholder="Observações" value="<?php echo $produtos['obs']; ?>">
+            <input type="text" id="obs" name="obs" placeholder="Observações" value="<?php echo $produtos['obs']; ?>" class="form-control">
+
 
             <label for="fornecedor">Fornecedor</label>
-            <input type="text" id="fornecedor" name="fornecedor" placeholder="fornecedor" value="<?php echo $produtos['fornecedor'];?>">
+            <input type="text" id="fornecedor" name="fornecedor" placeholder="fornecedor" value="<?php echo $produtos['fornecedor'];?>" class="form-control">
+
 
             <button type="submit" name="editar_produto">Editar</button>
             <a href="produtos.php">Voltar</a>
+            
+            </div>
         </form>
     </section>
 
