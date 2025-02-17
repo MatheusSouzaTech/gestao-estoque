@@ -24,19 +24,20 @@ $produtos = vizualizarProduto($_SESSION['usuario_id'],$conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <title>Conteudo de Estoque</title>
 </head>
 <body>
 
-    <h1>Tabela de produtos</h1>
+    <h1 id="estoque" class="shadow p-3 mb-5 bg-white rounded">Tabela de produtos</h1>
 
-    <table>
+    <table class="table table-success table-striped" id="tabela">
         
-        <thead>
+        <thead table-primary>
 
-            <tr>
-                <th>Codigo do Produto:</th>
-                <th>Nome do Produto:</th>
+            <tr class="table-primary">
+                <th>Codigo do Produto</th>
+                <th>Nome do Produto</th>
                 <th>Descrição</th>
                 <th>Categoria</th>
                 <th>Quantidade</th>
@@ -50,11 +51,11 @@ $produtos = vizualizarProduto($_SESSION['usuario_id'],$conn);
    
         </thead>
 
-        <tbody>
+        <tbody class="table-primary">
             <?php foreach($produtos as $produto): ?>
-            <tr>
+            <tr class="table-primary">
 
-                <td><?php echo $produto['codigoProduto'];?></td>
+                <td><?php echo $produto['id'];?></td>
                 <td><?php echo $produto['nomeProduto'];?></td>
                 <td><?php echo $produto['descricaoProduto'];?></td>
                 <td><?php echo $produto['categoria'];?></td>
@@ -78,6 +79,7 @@ $produtos = vizualizarProduto($_SESSION['usuario_id'],$conn);
 
 
     <a href="index.php">Sair</a>
+    <a href="conteudo.php">Atualizar</a>
 
     
 </body>

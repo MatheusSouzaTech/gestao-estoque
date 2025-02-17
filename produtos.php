@@ -96,21 +96,19 @@ if(isset($_GET['remover'])){
 
         <form method="post">
 
-            <div class="mb-3">
+            <div class="mb-3" id="formulario">
 
-            <label for="codigo">Codigo do Produto</label>
-            <input type="number" id="codigo" name="codigo">
 
             <label for="nomeProduto">Nome do Produto</label>
-            <input type="text" id="nomeProduto" name="nomeProduto" placeholder="Produto" >
+            <input type="text" id="nomeProduto" name="nomeProduto" placeholder="Produto" class="form-control">
 
 
             <label for="descricao">Descrição</label>
-            <input type="text" id="descricao" name="descricao" placeholder="Descrição" >
+            <input type="text" id="descricao" name="descricao" placeholder="Descrição" class="form-control" >
 
            
             <label for="categoria">Categoria</label>
-            <select name="categoria" id="categoria">
+            <select name="categoria" id="categoria" class="form-select form-select-sm">
 
                 <option value="higienicos">Higienicos</option>
                 <option value="alimenticios">Alimenticios</option>
@@ -120,24 +118,24 @@ if(isset($_GET['remover'])){
 
 
             <label for="quant">Quatidade de estoque: </label>
-            <input type="number" id="quant" name="quant" placeholder="Quantidade" min="0" >
+            <input type="number" id="quant" name="quant" placeholder="Quantidade" min="0" class="form-control">
 
 
             <label for="preco">Preço</label>
-            <input type="number" id="preco" name="preco" placeholder="Preço" >
+            <input type="number" id="preco" name="preco" placeholder="Preço" class="form-control">
 
 
             <label for="entrada">Data de Entrada</label>
-            <input type="date" id="entrada" name="entrada">
+            <input type="date" id="entrada" name="entrada" class="form-control">
 
             <label for="validade">Data de Validade</label>
-            <input type="date" id="validade" name="validade" >
+            <input type="date" id="validade" name="validade" class="form-control">
 
             <label for="local">Localização no armazém</label>
-            <input type="text" id="local" name="local" placeholder="Localização" >
+            <input type="text" id="local" name="local" placeholder="Localização" class="form-control" >
 
             <label for="status">Status</label>
-            <select name="status" id="status" >
+            <select name="status" id="status" class="form-select form-select-sm">
 
                 <option value="ativo">Ativo</option>
                 <option value="inativo">Inativo</option>
@@ -145,14 +143,14 @@ if(isset($_GET['remover'])){
             </select>
 
             <label for="obs">Observações</label>
-            <input type="text" id="obs" name="obs" placeholder="Observações">
+            <input type="text" id="obs" name="obs" placeholder="Observações" class="form-control">
 
 
             <label for="fornecedor">Fornecedor</label>
-            <input type="text" id="fornecedor" name="fornecedor" placeholder="fornecedor">
+            <input type="text" id="fornecedor" name="fornecedor" placeholder="fornecedor" class="form-control">
 
 
-            <button type="submit" name="incluir">Cadastrar</button>
+            <button type="submit" name="incluir" class="btn btn-primary" id="cadastro">Cadastrar</button>
             
             </div>
 
@@ -170,9 +168,8 @@ if(isset($_GET['remover'])){
         <thead class="table-primary">
 
             <tr class="table-primary">
-                <th>ID</th>
-                <th>Codigo do Produto:</th>
-                <th>Nome do Produto:</th>
+                <th>Codigo do Produto</th>
+                <th>Nome do Produto</th>
                 <th>Descrição</th>
                 <th>Categoria</th>
                 <th>Quantidade</th>
@@ -191,7 +188,6 @@ if(isset($_GET['remover'])){
             <?php foreach($produtos as $produto): ?>
             <tr>
                 <td><?php echo $produto['id'];?></td>
-                <td><?php echo $produto['codigoProduto'];?></td>
                 <td><?php echo $produto['nomeProduto'];?></td>
                 <td><?php echo $produto['descricaoProduto'];?></td>
                 <td><?php echo $produto['categoria'];?></td>
