@@ -34,13 +34,13 @@ function fazerLogin($email, $senha, $conn) {
     return false; 
 }
 
-function cadastrarProduto($usuario_id,$codigoProduto,$nomeProduto,$descricaoProduto,$categoria,$quant,$preco,$dataEntrada,$dataValidade,$localizacao,$status,$obs,$conn){
+function cadastrarProduto($usuario_id,$codigoProduto,$nomeProduto,$descricaoProduto,$categoria,$quant,$preco,$dataEntrada,$dataValidade,$localizacao,$status,$obs,$fornecedor,$conn){
 
-    $stmt = $conn->prepare("INSERT INTO produtos (usuario_id, codigoProduto, nomeProduto, descricaoProduto, categoria, quant, preco, dataEntrada, dataValidade, localizacao, stat, obs) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO produtos (usuario_id, codigoProduto, nomeProduto, descricaoProduto, categoria, quant, preco, dataEntrada, dataValidade, localizacao, stat, obs,fornecedor) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 
-    $stmt->bind_param("iisssidsssss", $usuario_id,$codigoProduto,$nomeProduto, $descricaoProduto, $categoria, $quant, $preco,$dataEntrada,$dataValidade,$localizacao,$status,$obs);
+    $stmt->bind_param("iisssidssssss", $usuario_id,$codigoProduto,$nomeProduto, $descricaoProduto, $categoria, $quant, $preco,$dataEntrada,$dataValidade,$localizacao,$status,$obs,$fornecedor);
 
     return $stmt->execute();
 
@@ -62,13 +62,13 @@ function vizualizarProduto($usuario_id,$conn){
 
 }
 
-function editarProduto($id, $codigoProduto, $nomeProduto, $descricaoProduto, $categoria, $quant, $preco, $dataEntrada, $dataValidade, $localizacao, $status, $obs, $conn) {
+function editarProduto($id, $codigoProduto, $nomeProduto, $descricaoProduto, $categoria, $quant, $preco, $dataEntrada, $dataValidade, $localizacao, $status, $obs,$fornecedor, $conn) {
 
     
-    $stmt = $conn->prepare("UPDATE produtos SET codigoProduto=?, nomeProduto=?, descricaoProduto=?, categoria=?, quant=?, preco=?, dataEntrada=?, dataValidade=?, localizacao=?, stat=?, obs=? WHERE id=?");
+    $stmt = $conn->prepare("UPDATE produtos SET codigoProduto=?, nomeProduto=?, descricaoProduto=?, categoria=?, quant=?, preco=?, dataEntrada=?, dataValidade=?, localizacao=?, stat=?, obs=?, fornecedor=? WHERE id=?");
 
 
-    $stmt->bind_param("sssisisssssi", $codigoProduto, $nomeProduto, $descricaoProduto, $categoria, $quant, $preco, $dataEntrada, $dataValidade, $localizacao, $status, $obs, $id);
+    $stmt->bind_param("sssisissssssi", $codigoProduto, $nomeProduto, $descricaoProduto, $categoria, $quant, $preco, $dataEntrada, $dataValidade, $localizacao, $status, $obs,$fornecedor, $id);
 
    
     return $stmt->execute();

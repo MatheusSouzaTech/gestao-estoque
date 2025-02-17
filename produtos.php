@@ -25,11 +25,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['incluir'])){
     $localizacao = $_POST['local'];
     $status = $_POST['status'];
     $obs = $_POST['obs'];
+    $fornecedor = $_POST['fornecedor'];
     
 
 
 
-    if(cadastrarProduto($id,$usuario_id,$nomeProduto,$descricaoProduto,$categoria,$quant,$preco,$dataEntrada,$dataValidade,$localizacao,$status,$obs,$conn)){
+    if(cadastrarProduto($id,$usuario_id,$nomeProduto,$descricaoProduto,$categoria,$quant,$preco,$dataEntrada,$dataValidade,$localizacao,$status,$obs,$fornecedor,$conn)){
 
         $sucesso_produto = 'Produto cadastrado com sucesso!';
     }
@@ -69,13 +70,14 @@ if(isset($_GET['remover'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Gestão de Estoque</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-
-    <h1>Gestão de Estoque</h1>
+    
+    <h1 id="estoque" class="shadow p-3 mb-5 bg-white rounded">Gestão de Estoque</h1>
 
     <?php if(isset($sucesso_produto)): ?>
         <p class="sucesso"><?php echo $sucesso_produto; ?></p>
@@ -94,8 +96,10 @@ if(isset($_GET['remover'])){
 
         <form method="post">
 
+            <div class="mb-3">
+
             <label for="codigo">Codigo do Produto</label>
-            <input type="number" id="codigo" name="codigo" >
+            <input type="number" id="codigo" name="codigo">
 
             <label for="nomeProduto">Nome do Produto</label>
             <input type="text" id="nomeProduto" name="nomeProduto" placeholder="Produto" >
@@ -124,7 +128,7 @@ if(isset($_GET['remover'])){
 
 
             <label for="entrada">Data de Entrada</label>
-            <input type="date" id="entrada" name="entrada" placeholder="dd/mm/aaaa" >
+            <input type="date" id="entrada" name="entrada">
 
             <label for="validade">Data de Validade</label>
             <input type="date" id="validade" name="validade" >
@@ -144,9 +148,13 @@ if(isset($_GET['remover'])){
             <input type="text" id="obs" name="obs" placeholder="Observações">
 
 
+            <label for="fornecedor">Fornecedor</label>
+            <input type="text" id="fornecedor" name="fornecedor" placeholder="fornecedor">
+
+
             <button type="submit" name="incluir">Cadastrar</button>
             
-            
+            </div>
 
         </form>
 
@@ -156,11 +164,12 @@ if(isset($_GET['remover'])){
     </section>
 
     <section class="container-tabela">
-    <table>
-        
-        <thead>
 
-            <tr>
+    <table class="table table-success table-striped">
+        
+        <thead class="table-primary">
+
+            <tr class="table-primary">
                 <th>ID</th>
                 <th>Codigo do Produto:</th>
                 <th>Nome do Produto:</th>
@@ -173,11 +182,12 @@ if(isset($_GET['remover'])){
                 <th>Localização no armazém</th>
                 <th>Status</th>
                 <th>Observações</th>
+                <th>fornecedor</th>
             </tr>
    
         </thead>
 
-        <tbody>
+        <tbody class="table-primary">
             <?php foreach($produtos as $produto): ?>
             <tr>
                 <td><?php echo $produto['id'];?></td>
@@ -192,6 +202,7 @@ if(isset($_GET['remover'])){
                 <td><?php echo $produto['localizacao'];?></td>
                 <td><?php echo $produto['stat'];?></td>
                 <td><?php echo $produto['obs'];?></td>
+                <td><?php echo $produto['fornecedor'];?></td>
 
                 <td>
                     <a href="?remover=<?php echo $produto['id']; ?>"onclick="return confirm('Tem certeza?')">Remover</a>

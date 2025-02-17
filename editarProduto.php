@@ -36,9 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_produto'])) {
     $localizacao = $_POST['local'];
     $status = $_POST['status'];
     $obs = $_POST['obs'];
+    $fornecedor = $_POST['fornecedor'];
 
     
-    if (editarProduto($id, $codigoProduto, $nomeProduto, $descricaoProduto, $categoria, $quant, $preco, $dataEntrada, $dataValidade, $localizacao, $status, $obs, $conn)) {
+    if (editarProduto($id, $codigoProduto, $nomeProduto, $descricaoProduto, $categoria, $quant, $preco, $dataEntrada, $dataValidade, $localizacao, $status, $obs,$fornecedor, $conn)) {
         $sucesso_edicao = 'Produto atualizado com sucesso!';
         
         $produtos['codigoProduto'] = $codigoProduto;
@@ -52,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_produto'])) {
         $produtos['localizacao'] = $localizacao;
         $produtos['stat'] = $status;
         $produtos['obs'] = $obs;
+        $fornecedor = $_POST['fornecedor'];
     } else {
         $erro_edicao = 'Erro ao atualizar produto';
     }
@@ -120,7 +122,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_produto'])) {
             <label for="obs">Observações</label>
             <input type="text" id="obs" name="obs" placeholder="Observações" value="<?php echo $produtos['obs']; ?>">
 
+            <label for="fornecedor">Fornecedor</label>
+            <input type="text" id="fornecedor" name="fornecedor" placeholder="fornecedor" value="<?php echo $produtos['fornecedor'];?>">
+
             <button type="submit" name="editar_produto">Editar</button>
+            <a href="produtos.php">Voltar</a>
         </form>
     </section>
 

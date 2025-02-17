@@ -65,6 +65,7 @@ $produtos = vizualizarProduto($_SESSION['usuario_id'],$conn);
                 <td><?php echo $produto['localizacao'];?></td>
                 <td><?php echo $produto['stat'];?></td>
                 <td><?php echo $produto['obs'];?></td>
+                <td><?php echo $produto['fornecedor'];?></td>
 
 
             </tr>

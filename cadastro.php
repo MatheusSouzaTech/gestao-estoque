@@ -18,7 +18,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro'])){
 
         $cadastro_sucesso = 'Cadastro realizado com sucesso! Faça o login.';
         
-
     }
     else{
 
@@ -28,8 +27,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro'])){
 
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
