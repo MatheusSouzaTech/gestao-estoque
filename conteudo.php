@@ -1,16 +1,16 @@
 <?php
 
 
-require 'conexao.php';
-require 'functions.php';
+require 'conexao.php'; //importando os dados do banco de dados
+require 'functions.php'; // importando as funções para serem ultilizadas
 
-if(!isset($_SESSION['usuario_id'])){
+if(!isset($_SESSION['usuario_id'])){ //verificação para ver se o usuario esta logaco
     header('Location: index.php');
     exit();
 }
 
 
-$produtos = vizualizarProduto($_SESSION['usuario_id'],$conn);
+$produtos = vizualizarProduto($_SESSION['usuario_id'],$conn); //executando a função com base na sessão do usuario
 
 
 ?>
@@ -50,9 +50,9 @@ $produtos = vizualizarProduto($_SESSION['usuario_id'],$conn);
             </tr>
    
         </thead>
-
+        <!--ultilizando o laço foreach para percorrer o banco e exibir o resultado-->
         <tbody class="table-primary">
-            <?php foreach($produtos as $produto): ?>
+            <?php foreach($produtos as $produto): ?> 
             <tr class="table-primary">
 
                 <td><?php echo $produto['id'];?></td>
@@ -70,7 +70,7 @@ $produtos = vizualizarProduto($_SESSION['usuario_id'],$conn);
 
 
             </tr>
-            <?php endforeach; ?>
+            <?php endforeach; ?> <!--finalizando a sessão php que foi aberta com o foreach-->
 
 
         </tbody>

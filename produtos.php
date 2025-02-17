@@ -1,10 +1,10 @@
 <?php
 
-require 'conexao.php';
-require 'functions.php';
+require 'conexao.php'; //importando os dados do banco de dados
+require 'functions.php'; // importando as funções para serem ultilizadas
 
 
-if(!isset($_SESSION['usuario_id'])){
+if(!isset($_SESSION['usuario_id'])){ //verifica se o usuario esta logado
 
     header('Location: index.php');
     exit();

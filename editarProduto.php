@@ -1,29 +1,35 @@
 <?php
 
 require 'conexao.php';
-require 'functions.php';
+require 'functions.php'; // importando as funções para serem ultilizadas
 
-if (!isset($_GET['id'])) {
+if (!isset($_GET['id'])) {//Verificando se o usuario esta logado na sessão
     header('Location: produtos.php');
     exit();
 }
 
-$id = $_GET['id'];
+//coletando os dados da sessão e atribuindo a uma variavel sessão
+$id = $_GET['id']; 
 $usuario_id = $_SESSION['usuario_id'];
 
+
+//preparando a consulta sql para acessar a tabela de produtos por id e usuario
 
 $stmt = $conn->prepare("SELECT * FROM produtos WHERE id = ? AND usuario_id = ?");
 $stmt->bind_param("ii", $id, $usuario_id);
 $stmt->execute();
 $result = $stmt->get_result();
-$produtos = $result->fetch_assoc();
+$produtos = $result->fetch_assoc(); //pega o resultado e atribui a uma viriavel array depois de verificar no banco
 
-if (!$produtos) {
-    header('Location: conteudo.php');
+if (!$produtos) { // verifica se o produto foi encontrado no banco
+    header('Location: produtos.php'); //caso não exista ele é redirecionado a tabela de produtos para uma nova consulta
     exit();
 }
 
+// verifica se a requisição foi realizada via post e se foi feita atraves no name editar_produto
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_produto'])) {
+
+    //coleta os dados digitados nos campos do formulario
 
     $codigoProduto = $_POST['codigo']; 
     $nomeProduto = $_POST['nomeProduto'];
@@ -38,9 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_produto'])) {
     $obs = $_POST['obs'];
     $fornecedor = $_POST['fornecedor'];
 
+    //execução da função de editar os produtos
+
     
     if (editarProduto($id, $codigoProduto, $nomeProduto, $descricaoProduto, $categoria, $quant, $preco, $dataEntrada, $dataValidade, $localizacao, $status, $obs,$fornecedor, $conn)) {
-        $sucesso_edicao = 'Produto atualizado com sucesso!';
+        $sucesso_edicao = 'Produto atualizado com sucesso!'; //caso seja feito com sucesso o codigo exbira a mensagem
+
+
+        //as a informações coletadas substituem as variaveis que a armazenam os dados do banco e as atualiza
         
         $produtos['codigoProduto'] = $codigoProduto;
         $produtos['nomeProduto'] = $nomeProduto;
@@ -53,8 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_produto'])) {
         $produtos['localizacao'] = $localizacao;
         $produtos['stat'] = $status;
         $produtos['obs'] = $obs;
-        $fornecedor = $_POST['fornecedor'];
-    } else {
+        $produtos['fornecedor'] = $fornecedor;
+    } else { // caso não seja atendida a condição exibira a mensagem de erro
         $erro_edicao = 'Erro ao atualizar produto';
     }
 }
@@ -146,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_produto'])) {
 
             <button type="submit" name="editar_produto">Editar</button>
             <a href="produtos.php">Voltar</a>
-            
+
             </div>
         </form>
     </section>

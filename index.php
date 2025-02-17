@@ -1,23 +1,25 @@
 <?php
 
 
-require 'conexao.php';
-require 'functions.php';
+require 'conexao.php'; //importando os dados do banco de dados
+require 'functions.php'; // importando as funções para serem ultilizadas
 
 
 
 $login_erro = '';
 
 
-
+// verifica se a requisição foi realizada via post e se foi feita atraves no name logar
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logar'])) {
 
+    //coleta os dados digitados nos campos do formulario
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $perfil = $_SESSION['usuario_perfil'];
 
-    if (fazerLogin($email, $senha, $conn)) {
-        if ($perfil === 'admin') { 
+
+    if (fazerLogin($email, $senha, $conn)) { //chama a função de fazer login e faz o redirecionamento
+        if ($perfil === 'admin') { //verificação com base no perfil se for admin redireciona para uma pagina e se for funcionario ira para outra
             header('Location: produtos.php');
             exit();
         } else if($perfil === 'func'){
@@ -25,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logar'])) {
             exit();
             
         }
-    } else {
+    } else { // caso apresente erro exibira a mensagem
 
         $login_erro = 'Email ou senha incorretos';
        

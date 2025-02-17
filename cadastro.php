@@ -1,26 +1,29 @@
 <?php
 
-require 'conexao.php';
-require 'functions.php';
+require 'conexao.php'; //importando os dados do banco de dados
+require 'functions.php'; // importando as funções para serem ultilizadas
 
 $erro_cadastro = '';
 $cadastro_sucesso = '';
 
 
+// verifica se a requisição foi realizada via post e se foi feita atraves no name cadastro
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro'])){
+
+    //coleta os dados digitados nos campos do formulario
 
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $perfil = $_POST['perfil'];
 
-    if(cadastrarUsuario($nome, $email, $senha, $perfil,$conn)){
+    if(cadastrarUsuario($nome, $email, $senha, $perfil,$conn)){ //chama a função de cadastro e insere todos os dados coletado do usuario no banco de dados
 
         $cadastro_sucesso = 'Cadastro realizado com sucesso! Faça o login.';
         
     }
     else{
-
+        //caso apresente algum erro ele retonar a mensagem de erro
         $erro_cadastro = 'Erro ao cadastrar. Email já existe';
     }
 
