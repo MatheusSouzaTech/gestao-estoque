@@ -19,15 +19,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logar'])) {
 
 
     if (fazerLogin($email, $senha, $conn)) { //chama a função de fazer login e faz o redirecionamento
+
         if ($perfil === 'admin') { //verificação com base no perfil se for admin redireciona para uma pagina e se for funcionario ira para outra
+
             header('Location: produtos.php');
             exit();
-        } else if($perfil === 'func'){
+
+        } 
+        else if($perfil === 'func'){
+
             header('Location: conteudo.php'); 
             exit();
             
         }
-    } else { // caso apresente erro exibira a mensagem
+
+    } 
+    else { // caso apresente erro exibira a mensagem
 
         $login_erro = 'Email ou senha incorretos';
        
@@ -56,20 +63,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logar'])) {
             <p class="erro"><?php echo $login_erro; ?></p>
         <?php endif; ?>
 
-    <form >
-        <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-        </div>
+        <form method="post" class="form-group">
+            <div class="mb-3">
+                <label for="email" class="form-label">Login</label>
+                <input type="text" class="form-control" name="email" id="email" placeholder="email" required>
 
-        <div class="mb-3">
-            <label for="senha" class="form-label">Password</label>
-            <input type="password" class="form-control" id="senha">
-         </div>
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" class="form-control" name="senha" id="senha" placeholder="senha" required>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" name="logar" class="btn btn-primary">Entrar</button>
+                <a href="cadastro.php">Cadastrar</a>
+            </div>
+        </form>
 
-    </form>
 
     </div>
     
