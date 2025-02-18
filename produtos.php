@@ -12,9 +12,9 @@ if(!isset($_SESSION['usuario_id'])){ //verifica se o usuario esta logado
 
 
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['incluir'])){
-
+    
     $usuario_id = $_SESSION['usuario_id'];
-    $id = $_POST['codigo'];
+    $codigoProduto = $_POST['codigo'];
     $nomeProduto = $_POST['nomeProduto'];
     $descricaoProduto = $_POST['descricao'];
     $categoria = $_POST['categoria'];
@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['incluir'])){
 
 
 
-    if(cadastrarProduto($id,$usuario_id,$nomeProduto,$descricaoProduto,$categoria,$quant,$preco,$dataEntrada,$dataValidade,$localizacao,$status,$obs,$fornecedor,$conn)){
+    if(cadastrarProduto($usuario_id,$codigoProduto,$nomeProduto,$descricaoProduto,$categoria,$quant,$preco,$dataEntrada,$dataValidade,$localizacao,$status,$obs,$fornecedor,$conn)){
 
         $sucesso_produto = 'Produto cadastrado com sucesso!';
     }
@@ -47,7 +47,6 @@ $produtos = vizualizarProduto($_SESSION['usuario_id'],$conn);
 
 
 
-
 if(isset($_GET['remover'])){
     $id = $_GET['remover'];
     if(removerProduto($id,$conn)){
@@ -59,7 +58,6 @@ if(isset($_GET['remover'])){
         $erro_produto = 'Erro ao remover produto';
     }
 }
-
 
 ?>
 
@@ -98,6 +96,9 @@ if(isset($_GET['remover'])){
 
             <div class="mb-3" id="formulario">
 
+            <label for="codigo">Código do Produto</label>
+            <input type="number" id="codigo" name="codigo" required>
+            
 
             <label for="nomeProduto">Nome do Produto</label>
             <input type="text" id="nomeProduto" name="nomeProduto" placeholder="Produto" class="form-control">
@@ -168,6 +169,7 @@ if(isset($_GET['remover'])){
         <thead class="table-primary">
 
             <tr class="table-primary">
+                <th>Id</th>
                 <th>Codigo do Produto</th>
                 <th>Nome do Produto</th>
                 <th>Descrição</th>
@@ -187,7 +189,8 @@ if(isset($_GET['remover'])){
         <tbody class="table-primary">
             <?php foreach($produtos as $produto): ?>
             <tr>
-                <td><?php echo $produto['id'];?></td>
+                <td><?php echo $produto['id']?></td>
+                <td><?php echo $produto['codigoProduto'];?></td>
                 <td><?php echo $produto['nomeProduto'];?></td>
                 <td><?php echo $produto['descricaoProduto'];?></td>
                 <td><?php echo $produto['categoria'];?></td>

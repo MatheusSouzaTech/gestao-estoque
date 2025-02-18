@@ -56,20 +56,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logar'])) {
             <p class="erro"><?php echo $login_erro; ?></p>
         <?php endif; ?>
 
-    <form >
-        <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-        </div>
+        <form method="post" class="form-group">
 
-        <div class="mb-3">
-            <label for="senha" class="form-label">Password</label>
-            <input type="password" class="form-control" id="senha">
-         </div>
+        <label for="email">Login</label>
+        <input type="text" name="email" id="email" placeholder="email" required>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <label for="senha">Senha</label>
+        <input type="password" name="senha" id="senha" placeholder="senha" required>
 
-    </form>
+        <button type="submit" name="logar" class="btn btn-primary">Entrar</button>
+        <a href="cadastro.php">Cadastrar</a>
+
+        </form>
 
     </div>
     

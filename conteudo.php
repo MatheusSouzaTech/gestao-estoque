@@ -36,6 +36,7 @@ $produtos = vizualizarProduto($_SESSION['usuario_id'],$conn); //executando a fun
         <thead table-primary>
 
             <tr class="table-primary">
+                <th>ID</th>
                 <th>Codigo do Produto</th>
                 <th>Nome do Produto</th>
                 <th>Descrição</th>
@@ -47,6 +48,7 @@ $produtos = vizualizarProduto($_SESSION['usuario_id'],$conn); //executando a fun
                 <th>Localização no armazém</th>
                 <th>Status</th>
                 <th>Observações</th>
+                <th>Fornecedor</th>
             </tr>
    
         </thead>
@@ -56,6 +58,7 @@ $produtos = vizualizarProduto($_SESSION['usuario_id'],$conn); //executando a fun
             <tr class="table-primary">
 
                 <td><?php echo $produto['id'];?></td>
+                <td><?php echo $produto['codigoProduto'];?></td>
                 <td><?php echo $produto['nomeProduto'];?></td>
                 <td><?php echo $produto['descricaoProduto'];?></td>
                 <td><?php echo $produto['categoria'];?></td>

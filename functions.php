@@ -46,8 +46,8 @@ function cadastrarProduto($usuario_id,$codigoProduto,$nomeProduto,$descricaoProd
 
 
     //preparação da consulta se inserção no no banco
-    $stmt = $conn->prepare("INSERT INTO produtos (usuario_id, codigoProduto, nomeProduto, descricaoProduto, categoria, quant, preco, dataEntrada, dataValidade, localizacao, stat, obs,fornecedor) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO produtos (usuarios_id, codigoProduto, nomeProduto, descricaoProduto, categoria, quant, preco, dataEntrada, dataValidade, localizacao, stat, obs,fornecedor) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
 
 
     $stmt->bind_param("iisssidssssss", $usuario_id,$codigoProduto,$nomeProduto, $descricaoProduto, $categoria, $quant, $preco,$dataEntrada,$dataValidade,$localizacao,$status,$obs,$fornecedor);  //Faz a vinculação e troca do valores, substituindo os "?" pelos valores das variáveis dos quais os dados foram coletados
@@ -62,7 +62,7 @@ function cadastrarProduto($usuario_id,$codigoProduto,$nomeProduto,$descricaoProd
 
 function vizualizarProduto($usuario_id,$conn){
 
-    $stmt = $conn->prepare("SELECT * FROM produtos WHERE usuario_id = ?"); // Prepara uma consulta SQL para consultar os dados no banco de dados
+    $stmt = $conn->prepare("SELECT * FROM produtos WHERE usuarios_id = ?"); // Prepara uma consulta SQL para consultar os dados no banco de dados
     $stmt->bind_param("i",$usuario_id); //vicula com base na chave estrangeira entre tabelas do banco
     $stmt->execute();
     $result = $stmt->get_result();

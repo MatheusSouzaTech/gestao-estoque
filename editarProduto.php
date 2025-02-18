@@ -15,7 +15,7 @@ $usuario_id = $_SESSION['usuario_id'];
 
 //preparando a consulta sql para acessar a tabela de produtos por id e usuario
 
-$stmt = $conn->prepare("SELECT * FROM produtos WHERE id = ? AND usuario_id = ?");
+$stmt = $conn->prepare("SELECT * FROM produtos WHERE id = ? AND usuarios_id = ?");
 $stmt->bind_param("ii", $id, $usuario_id);
 $stmt->execute();
 $result = $stmt->get_result();
