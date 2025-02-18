@@ -5,11 +5,14 @@ session_start(); //startando a sessão para
 
 function cadastrarUsuario($nome,$email,$senha, $perfil, $conn){
 
+
+
     $senhaHash = password_hash($senha,PASSWORD_DEFAULT); //veificação e criptografia da senha
 
     $stmt = $conn->prepare("INSERT INTO usuarios(nome,email,senha,perfil)VALUES (?,?,?,?)"); // Prepara uma consulta SQL para inserir um novo usuário no banco de dados
 
     $stmt->bind_param("ssss", $nome, $email,$senhaHash,$perfil);  //Faz a vinculação e troca do valores, substituindo os "?" pelos valores das variáveis
+
 
     return $stmt->execute(); //executa a função e a consulta pedida acima
 

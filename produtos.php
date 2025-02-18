@@ -123,7 +123,7 @@ if(isset($_GET['remover'])){
 
 
             <label for="preco">Preço</label>
-            <input type="number" id="preco" name="preco" placeholder="Preço" class="form-control">
+            <input type="number" id="preco" name="preco" placeholder="Preço" class="form-control" min="0">
 
 
             <label for="entrada">Data de Entrada</label>
