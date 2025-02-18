@@ -64,32 +64,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logar'])) {
         <?php endif; ?>
 
         <form method="post" class="form-group">
-<<<<<<< HEAD
 
-        <label for="email">Login</label>
-        <input type="text" name="email" id="email" placeholder="email" required>
+        <label for="email" class="form-label">Login</label>
+        <input type="text" name="email" class="form-control" id="email" placeholder="email" required>
 
-        <label for="senha">Senha</label>
-        <input type="password" name="senha" id="senha" placeholder="senha" required>
+        <label for="senha" class="form-label">Senha</label>
+        <input type="password" name="senha" class="form-control" id="senha" placeholder="senha" required>
 
         <button type="submit" name="logar" class="btn btn-primary">Entrar</button>
         <a href="cadastro.php">Cadastrar</a>
 
         </form>
-=======
-            <div class="mb-3">
-                <label for="email" class="form-label">Login</label>
-                <input type="text" class="form-control" name="email" id="email" placeholder="email" required>
-
-                <label for="senha" class="form-label">Senha</label>
-                <input type="password" class="form-control" name="senha" id="senha" placeholder="senha" required>
-
-                <button type="submit" name="logar" class="btn btn-primary">Entrar</button>
-                <a href="cadastro.php">Cadastrar</a>
-            </div>
-        </form>
-
->>>>>>> bead6df799f2857177043c32c63bb0452965315a
 
     </div>
     
